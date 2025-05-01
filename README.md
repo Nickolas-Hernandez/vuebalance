@@ -1,6 +1,6 @@
-# VueBalnce
+# VueBalance
 
-**VueBalnce** is a simple, elegant personal finance tracker built with Vue.js and the Composition API. Easily track your income, expenses, and spending habits—all in a clean, responsive interface. Built to sharpen Vue 3 skills while offering practical, real-world functionality.
+**VueBalance** is a simple, elegant personal finance tracker built with Vue.js and the Composition API. Easily track your income, expenses, and spending habits—all in a clean, responsive interface. Built to sharpen Vue 3 skills while offering practical, real-world functionality.
 
 ---
 
