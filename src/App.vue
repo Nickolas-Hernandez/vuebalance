@@ -8,7 +8,7 @@
 
     <main></main>
 </template>
-
+x
 <style>
 header {
     @apply bg-blue-500;

@@ -1,35 +1,98 @@
-# vueBalance
+# VueBalance
 
-This template should help get you started developing with Vue 3 in Vite.
+**VueBalance** is a simple, elegant personal finance tracker built with Vue.js and the Composition API. Easily track your income, expenses, and spending habits—all in a clean, responsive interface. Built to sharpen Vue 3 skills while offering practical, real-world functionality.
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Customize configuration
+- Add, edit, and delete income and expense transactions
+- Categorize transactions (e.g. Food, Rent, Entertainment)
+- Filter by category or transaction type
+- Visual dashboard with spending summaries
+- View total balance and recent transactions
+- Data persisted with `localStorage`
+- Built with Vue 3 Composition API
+- Responsive layout for desktop and mobile
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+---
 
-## Project Setup
+## Technologies Used
 
-```sh
+- [Vue.js 3](https://vuejs.org/) (Composition API)
+- [Vite](https://vitejs.dev/) – lightning-fast dev server
+- [Chart.js](https://www.chartjs.org/) or [ApexCharts](https://apexcharts.com/vue-chart-demos/) _(optional)_
+- [Tailwind CSS](https://tailwindcss.com/) _(optional)_
+- `localStorage` for data persistence
+
+---
+
+## Project Structure
+
+<pre lang="markdown"><code>
+├── components/           # Reusable UI components (forms, lists, modals, etc.)
+│   ├── TransactionForm.vue
+│   ├── TransactionList.vue
+│   ├── CategorySelector.vue
+│   ├── ChartSummary.vue
+│   └── Modal.vue
+│
+├── composables/          # Logic and reusable state with Composition API
+│   ├── useTransactions.js
+│   └── useCategories.js
+│
+├── views/                # Route views/pages
+│   ├── Dashboard.vue
+│   └── Transactions.vue
+│
+├── App.vue               # Root component
+└── main.js               # App entry point
+</code></pre>
+
+---
+
+## Getting Started
+
+```bash
+# Install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Start the local development server
 npm run dev
-```
 
-### Compile and Minify for Production
-
-```sh
+# Build for production
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
-```
+## Potential Improvements
+
+- Add user authentication and cloud data sync (e.g., Firebase, Supabase)
+- Set monthly budgets with spending alerts
+- Export transactions to CSV
+- Dark mode toggle
+- PWA support for offline access
+- Recurring transactions and reminders
+- Multiple account support (e.g., checking, savings, credit)
+- Currency formatting and internationalization
+
+---
+
+## Screenshots
+
+### Dashboard View
+
+![Dashboard Screenshot](screenshots/dashboard.png)
+
+### Add Transaction Modal
+
+![Add Transaction Modal](screenshots/add-transaction.png)
+
+### Category Selector
+
+![Category Selector](screenshots/category-selector.png)
+
+### Responsive Mobile View
+
+![Mobile View]
