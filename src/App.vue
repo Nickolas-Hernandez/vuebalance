@@ -1,16 +1,11 @@
-<script></script>
+<script setup>
+import Dashboard from '@/views/Dashboard.vue';
+</script>
 
 <template>
-    <header>
-        <h1 class="bg-red-500">vueBalance</h1>
-        <h2>Finance Tracker</h2>
-    </header>
-
-    <main></main>
+    <main>
+        <Dashboard />
+    </main>
 </template>
-x
-<style>
-header {
-    @apply bg-blue-500;
-}
-</style>
+
+<style></style>
