@@ -1,14 +1,9 @@
 <script setup>
-const { income, expenses, balance } = defineProps(['income', 'expenses', 'balance']);
+import { useCurrency } from '@/composables/useCurrency';
 
-const formatCurrency = value => {
-    if (value == null) return 'N/A';
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2,
-    }).format(value);
-};
+const { formatCurrency } = useCurrency();
+
+const { income, expenses, balance } = defineProps(['income', 'expenses', 'balance']);
 </script>
 
 <template>
