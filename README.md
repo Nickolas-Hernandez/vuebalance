@@ -68,6 +68,7 @@ npm run build
 
 ## Potential Improvements
 
+- Allow users to view a paginated list of their transactions
 - Add user authentication and cloud data sync (e.g., Firebase, Supabase)
 - Set monthly budgets with spending alerts
 - Export transactions to CSV
