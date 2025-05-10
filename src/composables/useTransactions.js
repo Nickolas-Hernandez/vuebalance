@@ -54,5 +54,9 @@ export function useTransactions() {
 
     const balance = computed(() => income.value - expenses.value);
 
-    return { transactions, income, expenses, balance };
+    function addTransaction(newTxn) {
+        transactions.value.unshift({ id: Date.now(), ...newTxn });
+    }
+
+    return { transactions, addTransaction, income, expenses, balance };
 }
