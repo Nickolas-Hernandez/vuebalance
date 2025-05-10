@@ -7,7 +7,7 @@ const { income, expenses, balance } = defineProps(['income', 'expenses', 'balanc
 </script>
 
 <template>
-    <div class="totals-overview">
+    <section class="totals-overview">
         <div class="totals-overview__card">
             <h3>Income</h3>
             <p class="text-green-600">{{ formatCurrency(income) }}</p>
@@ -20,7 +20,7 @@ const { income, expenses, balance } = defineProps(['income', 'expenses', 'balanc
             <h3>Balance</h3>
             <p class="text-blue-600">{{ formatCurrency(balance) }}</p>
         </div>
-    </div>
+    </section>
 </template>
 
 <style>

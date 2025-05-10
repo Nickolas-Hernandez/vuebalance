@@ -9,14 +9,13 @@ const { transactions } = defineProps(['transactions']);
 </script>
 
 <template>
-    <div class="recent-transactions">
+    <section class="recent-transactions">
         <h2>Recent Transactions</h2>
         <ul v-if="transactions.length" class="recent-transactions__transactions-list">
             <li v-for="txn in transactions" :key="txn.id">
-                {{ txn.id }}
-                <div class="">
-                    <p>{{ txn.description }}</p>
-                    <p>{{ formatDate(txn.date) }}</p>
+                <div>
+                    <p class="text-sm font-medium text-gray-900 truncate">{{ txn.description }}</p>
+                    <p class="text-xs text-gray-500">{{ formatDate(txn.date) }}</p>
                 </div>
                 <div
                     :class="[
@@ -29,7 +28,23 @@ const { transactions } = defineProps(['transactions']);
         </ul>
 
         <p v-else class="text-sm text-gray-500 italic text-center">No transactions yet.</p>
-    </div>
+    </section>
 </template>
 
-<style></style>
+<style>
+.recent-transactions {
+    @apply bg-white rounded-lg shadow p-4;
+}
+
+.recent-transactions h2 {
+    @apply text-lg font-semibold text-gray-800 mb-4;
+}
+
+.recent-transactions ul {
+    @apply space-y-3;
+}
+
+.recent-transactions ul > li {
+    @apply flex items-center justify-between border-b pb-2 last:border-b-0;
+}
+</style>
