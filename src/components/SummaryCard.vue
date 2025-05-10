@@ -16,15 +16,15 @@ const formatCurrency = value => {
         class="totals-overview totals-overview grid grid-cols-1 sm:grid-cols-3 gap-4 p-4 bg-gray-50 rounded-lg shadow-sm">
         <div class="totals-overview__card">
             <h3>Income</h3>
-            <p>{{ formatCurrency(income) }}</p>
+            <p class="text-green-600">{{ formatCurrency(income) }}</p>
         </div>
         <div class="totals-overview__card">
             <h3>Expenses</h3>
-            <p>{{ formatCurrency(expenses) }}</p>
+            <p class="text-red-600">{{ formatCurrency(expenses) }}</p>
         </div>
         <div class="totals-overview__card">
             <h3>Balance</h3>
-            <p>{{ formatCurrency(balance) }}</p>
+            <p class="text-blue-600">{{ formatCurrency(balance) }}</p>
         </div>
     </div>
 </template>
@@ -39,6 +39,6 @@ const formatCurrency = value => {
 }
 
 .totals-overview__card p {
-    @apply mt-1 text-xl font-semibold text-blue-600;
+    @apply mt-1 text-xl font-semibold;
 }
 </style>
