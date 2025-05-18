@@ -54,5 +54,31 @@ export function useTransactions() {
 
     const balance = computed(() => income.value - expenses.value);
 
-    return { transactions, income, expenses, balance };
+    function addTransaction(newTxn) {
+        transactions.value.unshift({ id: Date.now(), ...newTxn });
+    }
+
+    function updateTransaction(id, updatedTxn) {
+        const index = transactions.value.findIndex(t => t.id === id);
+        if (index !== -1) {
+            transactions.value[index] = { ...updatedTxn, id };
+        }
+    }
+
+    function deleteTransaction(id) {
+        const index = transactions.value.findIndex(t => t.id === id);
+        if (index !== -1) {
+            transactions.value.splice(index, 1);
+        }
+    }
+
+    return {
+        transactions,
+        addTransaction,
+        updateTransaction,
+        deleteTransaction,
+        income,
+        expenses,
+        balance,
+    };
 }

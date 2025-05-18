@@ -1,11 +1,14 @@
 <script setup>
 import { useDate } from '@/composables/useDate';
 import { useCurrency } from '@/composables/useCurrency';
+import { TrashIcon, PencilIcon } from '@heroicons/vue/24/solid';
 
 const { formatDate } = useDate();
 const { formatCurrency } = useCurrency();
 
 const { transactions } = defineProps(['transactions']);
+
+const emit = defineEmits(['edit', 'delete']);
 </script>
 
 <template>
@@ -19,10 +22,24 @@ const { transactions } = defineProps(['transactions']);
                 </div>
                 <div
                     :class="[
-                        'text-sm font-semibold',
+                        'text-sm font-semibold ml-auto mr-4',
                         txn.type === 'income' ? 'text-green-600' : 'text-red-600',
                     ]">
                     {{ formatCurrency(txn.amount) }}
+                </div>
+                <div class="recent-transactions__buttons">
+                    <button
+                        class="edit-button"
+                        @click="$emit('edit', txn)"
+                        style="width: 18px; height: 18px">
+                        <PencilIcon />
+                    </button>
+                    <button
+                        class="delete-button"
+                        @click="$emit('delete', txn.id)"
+                        style="width: 18px; height: 18px">
+                        <TrashIcon />
+                    </button>
                 </div>
             </li>
         </ul>
@@ -46,5 +63,13 @@ const { transactions } = defineProps(['transactions']);
 
 .recent-transactions ul > li {
     @apply flex items-center justify-between border-b pb-2 last:border-b-0;
+}
+
+.recent-transactions__buttons {
+    @apply flex flex-row flex-nowrap gap-x-2;
+}
+
+.recent-transactions__buttons button {
+    @apply text-gray-500 hover:text-gray-700 transition;
 }
 </style>
