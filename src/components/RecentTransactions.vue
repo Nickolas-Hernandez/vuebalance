@@ -1,6 +1,7 @@
 <script setup>
 import { useDate } from '@/composables/useDate';
 import { useCurrency } from '@/composables/useCurrency';
+import { TrashIcon, PencilIcon } from '@heroicons/vue/24/solid';
 
 const { formatDate } = useDate();
 const { formatCurrency } = useCurrency();
@@ -19,10 +20,19 @@ const { transactions } = defineProps(['transactions']);
                 </div>
                 <div
                     :class="[
-                        'text-sm font-semibold',
+                        'text-sm font-semibold ml-auto mr-4',
                         txn.type === 'income' ? 'text-green-600' : 'text-red-600',
                     ]">
                     {{ formatCurrency(txn.amount) }}
+                </div>
+                <div
+                    class="recent-transactions__buttons flex flex-row flex-nowrap gap-x-2 text-gray-500">
+                    <button class="edit-button" style="width: 18px; height: 18px">
+                        <PencilIcon />
+                    </button>
+                    <button class="delete-button" style="width: 18px; height: 18px">
+                        <TrashIcon />
+                    </button>
                 </div>
             </li>
         </ul>
