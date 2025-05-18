@@ -7,11 +7,19 @@ function handleBackgroundClick(e) {
 </script>
 
 <template>
-    <div
-        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
-        @click="handleBackgroundClick">
-        <div class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <section class="modal" @click="handleBackgroundClick">
+        <div class="">
             <slot />
         </div>
-    </div>
+    </section>
 </template>
+
+<style>
+.modal {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center;
+}
+
+.modal > div {
+    @apply bg-white p-6 rounded shadow-md w-full max-w-md;
+}
+</style>

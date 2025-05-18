@@ -8,13 +8,13 @@ const emit = defineEmits(['prev', 'next']);
 </script>
 
 <template>
-    <div class="pagination-controls">
+    <section class="pagination-controls px-4">
         <button @click="$emit('prev')" :disabled="currentPage === 1">Previous</button>
 
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
 
         <button @click="$emit('next')" :disabled="currentPage === totalPages">Next</button>
-    </div>
+    </section>
 </template>
 
 <style>
