@@ -8,7 +8,7 @@ const { formatCurrency } = useCurrency();
 
 const { transactions } = defineProps(['transactions']);
 
-const emit = defineEmits(['edit']);
+const emit = defineEmits(['edit', 'delete']);
 </script>
 
 <template>
@@ -34,7 +34,10 @@ const emit = defineEmits(['edit']);
                         style="width: 18px; height: 18px">
                         <PencilIcon />
                     </button>
-                    <button class="delete-button" style="width: 18px; height: 18px">
+                    <button
+                        class="delete-button"
+                        @click="$emit('delete', txn.id)"
+                        style="width: 18px; height: 18px">
                         <TrashIcon />
                     </button>
                 </div>

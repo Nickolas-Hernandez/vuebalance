@@ -8,8 +8,15 @@ import { ref } from 'vue';
 
 import { useTransactions } from '@/composables/useTransactions';
 
-const { transactions, addTransaction, updateTransaction, income, expenses, balance } =
-    useTransactions();
+const {
+    transactions,
+    addTransaction,
+    updateTransaction,
+    deleteTransaction,
+    income,
+    expenses,
+    balance,
+} = useTransactions();
 
 const showModal = ref(false);
 
@@ -35,12 +42,22 @@ function closeModal() {
     showModal.value = false;
     editingTransaction.value = null;
 }
+
+function handleDelete(id) {
+    const confirmed = confirm('Are you sure you want to delete this transaction?');
+    if (confirmed) {
+        deleteTransaction(id);
+    }
+}
 </script>
 
 <template>
     <div id="dashboard">
         <SummaryCard :income="income" :balance="balance" :expenses="expenses" />
-        <RecentTransactions :transactions="transactions" @edit="handleEdit" />
+        <RecentTransactions
+            :transactions="transactions"
+            @edit="handleEdit"
+            @delete="handleDelete" />
         <Modal v-if="showModal" @close="closeModal">
             <AddTransactionForm
                 :transaction="editingTransaction"

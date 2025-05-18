@@ -65,5 +65,20 @@ export function useTransactions() {
         }
     }
 
-    return { transactions, addTransaction, updateTransaction, income, expenses, balance };
+    function deleteTransaction(id) {
+        const index = transactions.value.findIndex(t => t.id === id);
+        if (index !== -1) {
+            transactions.value.splice(index, 1);
+        }
+    }
+
+    return {
+        transactions,
+        addTransaction,
+        updateTransaction,
+        deleteTransaction,
+        income,
+        expenses,
+        balance,
+    };
 }
