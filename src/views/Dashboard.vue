@@ -8,22 +8,43 @@ import { ref } from 'vue';
 
 import { useTransactions } from '@/composables/useTransactions';
 
-const { transactions, addTransaction, income, expenses, balance } = useTransactions();
+const { transactions, addTransaction, updateTransaction, income, expenses, balance } =
+    useTransactions();
 
 const showModal = ref(false);
 
+const editingTransaction = ref(null);
+
+function handleEdit(txn) {
+    editingTransaction.value = { ...txn };
+    showModal.value = true;
+}
+
 function handleTransactionSubmit(txn) {
-    addTransaction({ id: Date.now(), ...txn });
+    if (editingTransaction.value) {
+        updateTransaction(editingTransaction.value.id, txn);
+        editingTransaction.value = null;
+    } else {
+        addTransaction(txn);
+    }
+
     showModal.value = false;
+}
+
+function closeModal() {
+    showModal.value = false;
+    editingTransaction.value = null;
 }
 </script>
 
 <template>
     <div id="dashboard">
         <SummaryCard :income="income" :balance="balance" :expenses="expenses" />
-        <RecentTransactions :transactions="transactions" />
-        <Modal v-if="showModal" @close="showModal = false">
-            <AddTransactionForm @submit="handleTransactionSubmit" />
+        <RecentTransactions :transactions="transactions" @edit="handleEdit" />
+        <Modal v-if="showModal" @close="closeModal">
+            <AddTransactionForm
+                :transaction="editingTransaction"
+                @submit="handleTransactionSubmit" />
         </Modal>
         <button @click="showModal = true" class="add-transaction-modal-toggle">+</button>
     </div>

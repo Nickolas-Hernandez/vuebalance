@@ -1,13 +1,36 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const emit = defineEmits(['submit']);
+
+const props = defineProps({
+    transaction: {
+        type: Object,
+        default: null,
+    },
+});
 
 const description = ref('');
 const amount = ref('');
 const date = ref(new Date().toISOString().slice(0, 10));
 const category = ref('');
 const type = ref('expense');
+
+watch(
+    () => props.transaction,
+    txn => {
+        if (txn) {
+            description.value = txn.description;
+            amount.value = txn.amount;
+            date.value = txn.date;
+            category.value = txn.category;
+            type.value = txn.type;
+        } else {
+            resetForm();
+        }
+    },
+    { immediate: true },
+);
 
 function handleSubmit() {
     if (!description.value || !amount.value || !type.value || !date.value) return;
@@ -22,6 +45,10 @@ function handleSubmit() {
 
     emit('submit', transaction);
 
+    resetForm();
+}
+
+function resetForm() {
     description.value = '';
     amount.value = '';
     date.value = new Date().toISOString().slice(0, 10);
@@ -61,7 +88,7 @@ function handleSubmit() {
             </select>
         </div>
 
-        <button type="submit">Add Transaction</button>
+        <button type="submit">Save Transaction</button>
     </form>
 </template>
 

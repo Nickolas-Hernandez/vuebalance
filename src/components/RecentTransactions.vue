@@ -7,6 +7,8 @@ const { formatDate } = useDate();
 const { formatCurrency } = useCurrency();
 
 const { transactions } = defineProps(['transactions']);
+
+const emit = defineEmits(['edit']);
 </script>
 
 <template>
@@ -26,7 +28,10 @@ const { transactions } = defineProps(['transactions']);
                     {{ formatCurrency(txn.amount) }}
                 </div>
                 <div class="recent-transactions__buttons">
-                    <button class="edit-button" style="width: 18px; height: 18px">
+                    <button
+                        class="edit-button"
+                        @click="$emit('edit', txn)"
+                        style="width: 18px; height: 18px">
                         <PencilIcon />
                     </button>
                     <button class="delete-button" style="width: 18px; height: 18px">

@@ -58,5 +58,12 @@ export function useTransactions() {
         transactions.value.unshift({ id: Date.now(), ...newTxn });
     }
 
-    return { transactions, addTransaction, income, expenses, balance };
+    function updateTransaction(id, updatedTxn) {
+        const index = transactions.value.findIndex(t => t.id === id);
+        if (index !== -1) {
+            transactions.value[index] = { ...updatedTxn, id };
+        }
+    }
+
+    return { transactions, addTransaction, updateTransaction, income, expenses, balance };
 }
