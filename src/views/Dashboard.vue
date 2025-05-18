@@ -5,12 +5,14 @@ import RecentTransactions from '@/components/RecentTransactions.vue';
 import AddTransactionForm from '@/components/AddTransactionForm.vue';
 import Modal from '@/components/Modal.vue';
 import PaginationControls from '@/components/PaginationControls.vue';
+import TransactionTypeFilter from '@/components/TransactionTypeFilter.vue';
 import { useTransactions } from '@/composables/useTransactions';
 
 const showModal = ref(false);
 const editingTransaction = ref(null);
 const currentPage = ref(1);
 const pageSize = 5;
+const activeFilter = ref('all');
 
 const {
     transactions,
@@ -50,18 +52,23 @@ function handleDelete(id) {
     }
 }
 
-const paginatedTransactions = computed(() => {
-    const start = (currentPage.value - 1) * pageSize;
-    const end = start + pageSize;
-    return transactions.value.slice(start, end);
+const filteredTransactions = computed(() => {
+    if (activeFilter.value === 'all') return transactions.value;
+    return transactions.value.filter(txn => txn.type === activeFilter.value);
 });
 
-const totalPages = computed(() => Math.ceil(transactions.value.length / pageSize));
+const paginatedTransactions = computed(() => {
+    const start = (currentPage.value - 1) * pageSize;
+    return filteredTransactions.value.slice(start, start + pageSize);
+});
+
+const totalPages = computed(() => Math.ceil(filteredTransactions.value.length / pageSize));
 </script>
 
 <template>
     <div id="dashboard">
         <SummaryCard :income="income" :balance="balance" :expenses="expenses" />
+        <TransactionTypeFilter v-model="activeFilter" />
         <RecentTransactions
             :transactions="paginatedTransactions"
             @edit="handleEdit"
