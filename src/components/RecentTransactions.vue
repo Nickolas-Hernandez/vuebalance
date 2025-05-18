@@ -25,8 +25,7 @@ const { transactions } = defineProps(['transactions']);
                     ]">
                     {{ formatCurrency(txn.amount) }}
                 </div>
-                <div
-                    class="recent-transactions__buttons flex flex-row flex-nowrap gap-x-2 text-gray-500">
+                <div class="recent-transactions__buttons">
                     <button class="edit-button" style="width: 18px; height: 18px">
                         <PencilIcon />
                     </button>
@@ -56,5 +55,13 @@ const { transactions } = defineProps(['transactions']);
 
 .recent-transactions ul > li {
     @apply flex items-center justify-between border-b pb-2 last:border-b-0;
+}
+
+.recent-transactions__buttons {
+    @apply flex flex-row flex-nowrap gap-x-2;
+}
+
+.recent-transactions__buttons button {
+    @apply text-gray-500 hover:text-gray-700 transition;
 }
 </style>
