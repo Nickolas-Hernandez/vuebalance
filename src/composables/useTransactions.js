@@ -1,7 +1,7 @@
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 export function useTransactions() {
-    const transactions = ref([
+    const defaultTransactions = ref([
         {
             id: 1,
             description: 'Paycheck',
@@ -43,6 +43,17 @@ export function useTransactions() {
             date: '2025-04-21',
         },
     ]);
+
+    const stored = localStorage.getItem('transactions');
+    const transactions = ref(stored ? JSON.parse(stored) : defaultTransactions);
+
+    watch(
+        transactions,
+        newVal => {
+            localStorage.setItem('transactions', JSON.stringify(newVal));
+        },
+        { deep: true },
+    );
 
     const income = computed(() =>
         transactions.value.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0),
