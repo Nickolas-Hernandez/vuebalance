@@ -1,12 +1,16 @@
 <script setup>
+import { ref, computed } from 'vue';
 import SummaryCard from '@/components/SummaryCard.vue';
 import RecentTransactions from '@/components/RecentTransactions.vue';
 import AddTransactionForm from '@/components/AddTransactionForm.vue';
 import Modal from '@/components/Modal.vue';
-
-import { ref } from 'vue';
-
+import PaginationControls from '@/components/PaginationControls.vue';
 import { useTransactions } from '@/composables/useTransactions';
+
+const showModal = ref(false);
+const editingTransaction = ref(null);
+const currentPage = ref(1);
+const pageSize = 5;
 
 const {
     transactions,
@@ -17,10 +21,6 @@ const {
     expenses,
     balance,
 } = useTransactions();
-
-const showModal = ref(false);
-
-const editingTransaction = ref(null);
 
 function handleEdit(txn) {
     editingTransaction.value = { ...txn };
@@ -49,15 +49,28 @@ function handleDelete(id) {
         deleteTransaction(id);
     }
 }
+
+const paginatedTransactions = computed(() => {
+    const start = (currentPage.value - 1) * pageSize;
+    const end = start + pageSize;
+    return transactions.value.slice(start, end);
+});
+
+const totalPages = computed(() => Math.ceil(transactions.value.length / pageSize));
 </script>
 
 <template>
     <div id="dashboard">
         <SummaryCard :income="income" :balance="balance" :expenses="expenses" />
         <RecentTransactions
-            :transactions="transactions"
+            :transactions="paginatedTransactions"
             @edit="handleEdit"
             @delete="handleDelete" />
+        <PaginationControls
+            :currentPage="currentPage"
+            :totalPages="totalPages"
+            @prev="() => currentPage--"
+            @next="() => currentPage++" />
         <Modal v-if="showModal" @close="closeModal">
             <AddTransactionForm
                 :transaction="editingTransaction"
