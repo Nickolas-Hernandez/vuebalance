@@ -1,19 +1,21 @@
 # VueBalance
 
-**VueBalance** is a simple, elegant personal finance tracker built with Vue.js and the Composition API. Easily track your income, expenses, and spending habits—all in a clean, responsive interface. Built to sharpen Vue 3 skills while offering practical, real-world functionality.
+A modern, responsive personal finance tracker built with **Vue 3** and the **Composition API**.  
+VueBalance lets users add, edit, and delete transactions, view their financial summary, and filter data — all
 
 ---
 
 ## Features
 
-- Add, edit, and delete income and expense transactions
-- Categorize transactions (e.g. Food, Rent, Entertainment)
-- Filter by category or transaction type
-- Visual dashboard with spending summaries
-- View total balance and recent transactions
-- Data persisted with `localStorage`
-- Built with Vue 3 Composition API
-- Responsive layout for desktop and mobile
+- ✅ Add, edit, and delete transactions
+- ✅ Summary cards for income, expenses, and balance
+- ✅ Pagination with custom controls
+- ✅ Transaction filtering (Income / Expense / All)
+- ✅ Smart container + dumb component architecture
+- ✅ Persistent state with `localStorage`
+- ✅ Fully modular with reusable components
+- ✅ Built with Vue 3's Composition API
+- ✅ Mobile-first responsive layout
 
 ---
 
@@ -31,19 +33,20 @@
 
 <pre lang="markdown"><code>
 ├── components/           # Reusable UI components (forms, lists, modals, etc.)
-│   ├── TransactionForm.vue
-│   ├── TransactionList.vue
-│   ├── CategorySelector.vue
-│   ├── ChartSummary.vue
-│   └── Modal.vue
+│   ├── AddTransactionForm.vue
+│   ├── Modal.vue
+│   ├── PaginationControls.vue
+│   ├── RecentTransactions.vue
+│   ├── SummaryCard.vue
+|   └── TransactionTypeFilter.vue
 │
 ├── composables/          # Logic and reusable state with Composition API
-│   ├── useTransactions.js
-│   └── useCategories.js
+│   ├── useCurrency.js
+│   ├── useDate.js
+│   └── useTransactions.js
 │
 ├── views/                # Route views/pages
-│   ├── Dashboard.vue
-│   └── Transactions.vue
+│   └── Dashboard.vue
 │
 ├── App.vue               # Root component
 └── main.js               # App entry point
@@ -68,15 +71,13 @@ npm run build
 
 ## Potential Improvements
 
-- Allow users to view a paginated list of their transactions
-- Add user authentication and cloud data sync (e.g., Firebase, Supabase)
-- Set monthly budgets with spending alerts
-- Export transactions to CSV
-- Dark mode toggle
-- PWA support for offline access
-- Recurring transactions and reminders
-- Multiple account support (e.g., checking, savings, credit)
-- Currency formatting and internationalization
+- Category filter and management (e.g. Food, Bills)
+- Toast notifications for feedback
+- Dark mode toggle with theme persistence
+- Export data to a csv file
+- Reset all data button
+- Better accessibility (a11y) support
+- Deploy to Netlify/Vercel for live demo
 
 ---
 
@@ -84,16 +85,9 @@ npm run build
 
 ### Dashboard View
 
-![Dashboard Screenshot](screenshots/dashboard.png)
-
-### Add Transaction Modal
-
-![Add Transaction Modal](screenshots/add-transaction.png)
-
-### Category Selector
-
-![Category Selector](screenshots/category-selector.png)
+![Screenshot 2025-05-18 at 17 12 15](https://github.com/user-attachments/assets/fba87fbf-f0a0-4d96-a0f1-42c62a2bbe1f)
 
 ### Responsive Mobile View
 
-![Mobile View]
+![Screenshot 2025-05-18 at 17 13 30](https://github.com/user-attachments/assets/468b4651-c657-4493-9aba-52742743cf50)
+
