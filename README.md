@@ -3,6 +3,8 @@
 A modern, responsive personal finance tracker built with **Vue 3** and the **Composition API**.  
 VueBalance lets users add, edit, and delete transactions, view their financial summary, and filter data — all
 
+🔗 [Live Demo](https://nickolas-hernandez.github.io/vuebalance/)
+
 ---
 
 ## Features
